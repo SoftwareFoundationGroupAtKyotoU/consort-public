@@ -1,0 +1,21 @@
+/* !!! This was "fixed" because the jayhorn version is actually correct */
+fibonacci(n) {
+  if n < 1 then
+    0
+  else if n = 1 then
+    1
+  else
+   let f1 = fibonacci((n - 1)) in
+   let f2 = fibonacci((n - 2)) in
+   f1 + f2
+}
+
+
+{
+  let x = (_ : ~ >= 0 /\ ~ <= 46) in
+  let result = fibonacci(x) in
+  if x = 5 then
+    assert(result = 3)
+  else
+    ()
+}

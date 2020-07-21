@@ -1,0 +1,55 @@
+/** fail: broken */
+mult(n, m) {
+  if m < 0 then
+    mult(n, (-1 * m))
+  else if m = 0 then
+    0
+  else if m = 1 then
+    1
+  else
+    let ret = mult(n, (m - 1)) in
+	n + ret
+}
+
+multiple_of(n, m) {
+  if m < 0 then
+    multiple_of(n, (-1 * m))
+  else if n < 0 then
+    multiple_of((-1 * n), m)
+  else if m = 0 then
+    false
+  else if n = 0 then
+    true
+  else
+    multiple_of((n - m), m)
+}
+
+is_prime(n) {
+  is_prime_(n, (n - 1))
+}
+
+is_prime_(n, m) {
+  if n <= 1 then
+   false
+  else if n = 2 then
+   true
+  else if m <= 1 then
+   true
+  else
+    let ret = multiple_of(n, m) in
+	if ret = true then
+	  false
+	else
+	  is_prime_(n, (m - 1))
+}
+
+{
+  let n = (_: ~ >= 1 /\ ~ <= 46340) in
+  let f1 = (_: ~ > 1 /\ ~ <= 46340) in
+  let f2 = (_: ~ > 1 /\ ~ <= 46340) in
+  let result = is_prime(n) in
+  let m_res = mult(f1, f2) in
+  if m_res = n then
+    assert(1 = 0)
+  else ()
+}

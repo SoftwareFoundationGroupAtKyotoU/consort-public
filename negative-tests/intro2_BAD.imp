@@ -1,0 +1,16 @@
+loop(a, b) {
+  let a_ = *a in
+  let b_ = *b in {
+	b := *b + 1;
+	a := *a + 1;
+	assert(*a = (a_ + 1));
+	if _ then
+	  loop(b, (mkref _))
+	else
+	  let b__ = b in loop(b, b__)
+  }
+}
+
+{
+  loop((mkref _), (mkref _))
+}

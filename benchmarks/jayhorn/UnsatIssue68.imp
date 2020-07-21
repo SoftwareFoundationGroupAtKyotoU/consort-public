@@ -1,0 +1,6 @@
+/** trivial */
+{
+  let len = (_: ~ >= 0) in
+  let args = mkarray len in
+  assert(args.length = 42)
+}
